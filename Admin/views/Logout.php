@@ -1,0 +1,10 @@
+<?php
+session_start();
+unset($_SESSION['id_admin']);
+unset($_SESSION['id_pemilik']);
+unset($_SESSION['nm_admin']);
+unset($_SESSION['nm_pemilik']);
+?>
+<script>
+location.href="../index.php";
+</script>

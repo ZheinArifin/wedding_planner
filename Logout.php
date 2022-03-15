@@ -1,0 +1,9 @@
+<?php
+session_start();
+unset($_SESSION['id_admin']);
+unset($_SESSION['id_pel']);
+unset($_SESSION['nama']);
+?>
+<script>
+	location="index";
+</script>
