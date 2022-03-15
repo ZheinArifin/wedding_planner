@@ -429,6 +429,7 @@ if ($_SESSION['id_pel'] == "") {
                         <th style="color:black">Deskripsi</th>
                         <th style="color:black">Tanggal Sewa</th>
                         <th style="color:black">Diskon</th>
+                        <th style="color:black">Pembayaran DP</th>
                         <th style="color:black">Harga</th>
                         <th style="color:black">Action</th>
                     </tr>
@@ -450,6 +451,8 @@ if ($_SESSION['id_pel'] == "") {
                         $query_4 = $con -> query($sql_4);
                         $dskn = $query_4 -> fetch_array(MYSQLI_ASSOC);
                         $ttl = $produk['harga'] - ($dskn['diskon'] ?? 0 * $produk['harga']);
+                        $dp = ($ttl*(10/100));
+
                         if(empty($dskn['diskon'])){
                             $diskon = 0;
                         }else{
@@ -464,6 +467,17 @@ if ($_SESSION['id_pel'] == "") {
                         <td><?= $produk['deskripsi'] ?></td>
                         <td><?= date('d F Y', strtotime($pemesanan['tgl_sewa'])) ?></td>
                         <td><?= $diskon;?>%
+                        <?php
+                        if($row['bukti'] != ""){
+                            ?>
+                            <td>Rp. <?= number_format($dp,0,'.','.') ?></td>
+                            <?php
+                        }else{
+                            ?>
+                            Belum Bayar
+                            <?php
+                        }
+                        ?>
                         <td>Rp. <?= number_format($produk['harga'],0,'.','.') ?></td>
                         <td>
                             <a href='Pembayaran?id=<?=$row['id'] ?>' class='btn btn-primary text-white' ><i class='far fa-credit-card'></i> Bayar</a>
@@ -486,6 +500,7 @@ if ($_SESSION['id_pel'] == "") {
                         <th style="color:black">Deskripsi</th>
                         <th style="color:black">Diskon</th>
                         <th style="color:black">Tanggal Sewa</th>
+                        <th style="color:black">DP</th>
                         <th style="color:black">Harga</th>
                         <th style="color:black">Total</th>
                         <th style="color:black">Action</th>
