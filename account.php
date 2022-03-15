@@ -458,8 +458,8 @@ if ($_SESSION['id_pel'] == "") {
                         }else{
                             $diskon = $dskn['diskon'];
                         }
-                        if($row['bukti'] == "" || $row['bukti_lunas'] == "")
-                        
+                        if($row['status'] != "Lunas"){
+
                         ?>
                         <tr>
                         <td><?= $no++ ?></td>
@@ -485,6 +485,7 @@ if ($_SESSION['id_pel'] == "") {
                         </tr>
                         <?php
                         }
+                    }
                         ?>
                     </tbody>
                     </table>
